@@ -1,6 +1,5 @@
 // Функция, которая выводит случайное число в диапозоне от min до max
-function selfRandom(min, max)
-{
+function selfRandom(min, max){
   if (max>min) {
     return Math.floor((Math.random() * (max - min + 1)) + min);
   }
@@ -10,12 +9,11 @@ selfRandom(1,20);
 
 // Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно.
 
-function coordinateRandom(min, max, number)
-{
+function coordinateRandom(min, max, number){
   if ((max>min) && (min>0) && (max>0)) {
     const random = Math.random() * (max - min + 1) + min; //Генерация рандомного числа в диапозоне (число дробное)
     const remainder = 10**number; // Получения числа, для определения количества знаков
-    return (Math.ceil(random*remainder)/remainder); //Вычисление нужного числа
+    return (Math.ceil(random*remainder)/remainder);//Вычисление нужного числа
   }
   throw new Error('Проверьте введенные числа!');
 }
