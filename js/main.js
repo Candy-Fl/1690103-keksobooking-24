@@ -135,9 +135,9 @@ const createOffer = () => {
       features : getRandomCount(FEATURES),
       description: getRandomArrayElement(DESCRIPTION),
       photos : getRandomArrayElement(PHOTOS),
-    }
-  }
-}
+    },
+  };
+};
 
 // Создаём массив из 10 объектов
 const sameOfferList=Array.from({length:10},createOffer);
