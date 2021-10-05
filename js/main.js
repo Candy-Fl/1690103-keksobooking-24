@@ -1,16 +1,16 @@
 // Функция, которая выводит случайное число в диапозоне от min до max
-function getSelfRandom(a, b){
-  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+function getSelfRandom(first, b){
+  const lower = Math.ceil(Math.min(Math.abs(first), Math.abs(second)));
+  const upper = Math.floor(Math.max(Math.abs(first), Math.abs(second)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
-};
+}
 
 // Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно.
 
-function getRandomPositiveFloat (a, b, digits ) {
-  const lower = Math.min(Math.abs(a), Math.abs(b));
-  const upper = Math.max(Math.abs(a), Math.abs(b));
+function getRandomPositiveFloat (first, second, digits ) {
+  const lower = Math.min(Math.abs(first), Math.abs(second));
+  const upper = Math.max(Math.abs(first), Math.abs(second));
   const result = Math.random() * (upper - lower) + lower;
   return parseFloat(result.toFixed(digits),10);
 }
@@ -26,32 +26,25 @@ const AVATAR_INDEX = [
   '07',
   '08',
   '09',
-  '10'
+  '10',
 ];
 
 // Заголовок
 
 const TITLE = [
-  'К вашему вниманию, лучшее предложение, что вы видели на данный момент!'
+  'К вашему вниманию, лучшее предложение, что вы видели на данный момент!',
 ];
 
 // Получение рандомных координат
 
-const getRandomLat = () => {
-  return (getRandomPositiveFloat(35.65000,35.70000,3));
-}
+const getRandomLat = () => (getRandomPositiveFloat(35.65000,35.70000,3));
 
-const getRandomLng = () => {
-  return (getRandomPositiveFloat(139.70000,139.80000,4));
-}
 
-// Получаем случайную стоимость
+const getRandomLng = () => (getRandomPositiveFloat(139.70000,139.80000,4));
 
-const PRICE = [
-  getSelfRandom(1,100000)
-];
 
-// Получаем тип жилья
+
+// Тип жилья
 
 const TYPE = [
   'palace',
@@ -61,19 +54,7 @@ const TYPE = [
   'hotel',
 ];
 
-// Получаем число комнат
-
-const ROOMS = [
-  getSelfRandom(1,100000),
-];
-
-// Получаем число гостей
-
-const GUESTS = [
-  getSelfRandom(1,100000),
-];
-
-// Получаем дату заеда
+// Дата заеда
 
 const CHECKIN = [
   '12:00',
@@ -81,7 +62,7 @@ const CHECKIN = [
   '14:00',
 ];
 
-// Получаем дату выезда
+// Дата выезда
 
 const CHECKOUT = [
   '12:00',
@@ -134,14 +115,6 @@ const getRandomCount = (elements) => {
   return newElements;
 };
 
-// Создаём объект , который описывает автора
-
-const createAuthor = () => {
-  return {
-    avatar: 'img/avatars/user' + getRandomArrayElement(AVATAR_INDEX) + '.png',
-  }
-};
-
 // Создаём объект , который описывает информацию об объявлении
 
 const createOffer = () => {
@@ -155,13 +128,11 @@ const createOffer = () => {
     },
     offer : {
       title : getRandomArrayElement(TITLE),
-      address: [
-        String(location.lat)+' '+String(location.lng)
-      ],
-      price : getRandomArrayElement(PRICE),
+      address: String(location.lat)+' '+String(location.lng),
+      price : getSelfRandom(1,100000),
       type: getRandomArrayElement(TYPE),
-      rooms : getRandomArrayElement(ROOMS),
-      guests : getRandomArrayElement(GUESTS),
+      rooms : getSelfRandom(1,100000),
+      guests : getSelfRandom(1,100000),
       checkin : getRandomArrayElement(CHECKIN),
       checkout : getRandomArrayElement(CHECKOUT),
       features : getRandomCount(FEATURES),
@@ -171,16 +142,5 @@ const createOffer = () => {
   }
 }
 
-
-// Создаём один объект
-
-const getSameOffer = () => {
-  return {
-    author : createAuthor(),
-    offer : createOffer(),
-    location : LOCATION
-  }
-};
-
 // Создаём массив из 10 объектов
-const sameOfferList=Array.from({length:10},getSameOffer);
+const sameOfferList=Array.from({length:10},createOffer);
