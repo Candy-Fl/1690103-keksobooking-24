@@ -1,5 +1,5 @@
 // Функция, которая выводит случайное число в диапозоне от min до max
-function getSelfRandom(first, b){
+function getSelfRandom(first, second){
   const lower = Math.ceil(Math.min(Math.abs(first), Math.abs(second)));
   const upper = Math.floor(Math.max(Math.abs(first), Math.abs(second)));
   const result = Math.random() * (upper - lower + 1) + lower;
@@ -43,7 +43,6 @@ const getRandomLat = () => (getRandomPositiveFloat(35.65000,35.70000,3));
 const getRandomLng = () => (getRandomPositiveFloat(139.70000,139.80000,4));
 
 
-
 // Тип жилья
 
 const TYPE = [
@@ -84,7 +83,7 @@ const FEATURES = [
 // Описание квартиры
 
 const DESCRIPTION = [
-  'Как и говорилось ранее, квартира шикарна!'
+  'Как и говорилось ранее, квартира шикарна!',
 ];
 
 // Фото квартиры
@@ -97,18 +96,16 @@ const PHOTOS = [
 
 // Получаем случайный элемент массива
 
-const getRandomArrayElement = (elements) => {
-  return(elements[getSelfRandom(0,elements.length-1)])
-};
+const getRandomArrayElement = (elements) => elements[getSelfRandom(0,elements.length-1)];
 
 // Получаем несколько случайных элементов массива, которые не будут повторяться
 
 const getRandomCount = (elements) => {
-  newElements = [];
-  copyElements = elements.slice(0);
-  countRandom = getSelfRandom(1,elements.length-1);
+  let newElements = [];
+  let copyElements = elements.slice(0);
+  let countRandom = getSelfRandom(1,elements.length-1);
   for (let i = 1 ; i<countRandom ; i++) {
-    randomIndex = getSelfRandom(0,elements.length-i);
+    let randomIndex = getSelfRandom(0,elements.length-i);
     newElements.push(copyElements[randomIndex]);
     copyElements.splice(randomIndex,1);
   }
