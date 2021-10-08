@@ -117,7 +117,7 @@ const getRandomCount = (elements) => {
 const createOffer = () => {
   return {
     author : {
-      avatar: 'img/avatars/user' + getRandomArrayElement(AVATAR_INDEX) + '.png',
+      avatar: `img/avatars/user${getRandomArrayElement(AVATAR_INDEX)}.png`,
     },
     location : {
       lat : getRandomLat(),
@@ -125,7 +125,7 @@ const createOffer = () => {
     },
     offer : {
       title : getRandomArrayElement(TITLE),
-      address: String(location.lat)+' '+String(location.lng),
+      address: `${location.lat} ${location.lng}`,
       price : getSelfRandom(1,100000),
       type: getRandomArrayElement(TYPE),
       rooms : getSelfRandom(1,100000),
