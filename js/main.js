@@ -101,11 +101,11 @@ const getRandomArrayElement = (elements) => elements[getSelfRandom(0,elements.le
 // Получаем несколько случайных элементов массива, которые не будут повторяться
 
 const getRandomCount = (elements) => {
-  let newElements = [];
-  let copyElements = elements.slice(0);
-  let countRandom = getSelfRandom(1,elements.length-1);
+  const newElements = [];
+  const copyElements = elements.slice(0);
+  const countRandom = getSelfRandom(1,elements.length-1);
   for (let i = 1 ; i<countRandom ; i++) {
-    let randomIndex = getSelfRandom(0,elements.length-i);
+    const randomIndex = getSelfRandom(0,elements.length-i);
     newElements.push(copyElements[randomIndex]);
     copyElements.splice(randomIndex,1);
   }
@@ -141,3 +141,4 @@ const createOffer = () => {
 
 // Создаём массив из 10 объектов
 const sameOfferList=Array.from({length:10},createOffer);
+sameOfferList();
