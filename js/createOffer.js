@@ -2,9 +2,6 @@ import {AVATAR_INDEX,TITLE,TYPE,CHECKIN,CHECKOUT,FEATURES,DESCRIPTION,PHOTOS} fr
 import {getSelfRandom,getRandomArrayElement,getRandomCount } from './util.js';
 import { getRandomLat, getRandomLng } from './coordinate.js';
 
-
-// Создаём объект , который описывает информацию об объявлении
-
 const createOffer = () => ({
   author : {
     avatar: `img/avatars/user${getRandomArrayElement(AVATAR_INDEX)}.png`,
@@ -28,6 +25,4 @@ const createOffer = () => ({
   },
 });
 
-// Создаём массив из 10 объектов
-const sameOfferList=Array.from({length:10},createOffer);
-sameOfferList();
+export {createOffer};
