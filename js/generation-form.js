@@ -50,12 +50,10 @@ const  generate = (Item)=> {
       const photoItem = document.createElement('img');
       photoItem.classList.add('popup__photo');
       photoItem.src = photo;
-      console.log(photo);
       photoItem.width = '45';
       photoItem.height = '40';
       photoItem.alt = 'Фотография жилья1';
       photoListContainer.appendChild(photoItem);
-      console.log(photoListContainer.children);
     });
   }
   else {
