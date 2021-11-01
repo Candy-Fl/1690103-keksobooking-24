@@ -7,5 +7,5 @@ import './generation-form.js';
 import './util.js';
 import {generate} from './generation-form.js';
 // eslint-disable-next-line no-console
-console.log(generate());
+console.log(generate(sameOfferList[0]));
 sameOfferList;
