@@ -1,33 +1,11 @@
-import {AVATAR_INDEX,TITLE,TYPE,CHECKIN,CHECKOUT,FEATURES,DESCRIPTION,PHOTOS} from './data.js';
-import {getSelfRandom,getRandomArrayElement,getRandomCount } from './util.js';
-import { getRandomLat, getRandomLng } from './coordinate.js';
-
-
-// Создаём объект , который описывает информацию об объявлении
-
-const createOffer = () => ({
-  author : {
-    avatar: `img/avatars/user${getRandomArrayElement(AVATAR_INDEX)}.png`,
-  },
-  location : {
-    lat : getRandomLat(),
-    lng : getRandomLng(),
-  },
-  offer : {
-    title : getRandomArrayElement(TITLE),
-    address: `${location.lat} ${location.lng}`,
-    price : getSelfRandom(1,100000),
-    type: getRandomArrayElement(TYPE),
-    rooms : getSelfRandom(1,100000),
-    guests : getSelfRandom(1,100000),
-    checkin : getRandomArrayElement(CHECKIN),
-    checkout : getRandomArrayElement(CHECKOUT),
-    features : getRandomCount(FEATURES),
-    description: getRandomArrayElement(DESCRIPTION),
-    photos : getRandomArrayElement(PHOTOS),
-  },
-});
-
-// Создаём массив из 10 объектов
-const sameOfferList=Array.from({length:10},createOffer);
-sameOfferList();
+import './coordinate.js';
+import './create-offer.js';
+import './create-offer-list.js';
+import { sameOfferList } from './create-offer-list.js';
+import './data.js';
+import './generation-form.js';
+import './util.js';
+import {generate} from './generation-form.js';
+// eslint-disable-next-line no-console
+console.log(generate(sameOfferList[0]));
+sameOfferList;

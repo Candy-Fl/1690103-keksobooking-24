@@ -32,7 +32,7 @@ const getRandomCount = (elements) => {
   const newElements = [];
   const copyElements = elements.slice(0);
   const countRandom = getSelfRandom(1,elements.length-1);
-  for (let i = 1 ; i<countRandom ; i++) {
+  for (let i = 0 ; i<countRandom ; i++) {
     const randomIndex = getSelfRandom(0,elements.length-i);
     newElements.push(copyElements[randomIndex]);
     copyElements.splice(randomIndex,1);
