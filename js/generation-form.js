@@ -8,7 +8,7 @@ const type = {
 };
 // Объект данных
 const offerList = document.querySelector('#map-canvas');
-const  generate = (Item)=> {
+const  generateForm = (Item)=> {
   // Находим копию шаблона и привязываем её к переменной cardExample
   const cardExample = document.querySelector('#card').content.querySelector('.popup');
   // Для каждого предложения мы меняем значения в соответствии с данными
@@ -66,4 +66,4 @@ const  generate = (Item)=> {
   offerList.appendChild(offerElement);
 };
 
-export{generate};
+export{generateForm};
