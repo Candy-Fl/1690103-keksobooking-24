@@ -6,7 +6,7 @@ import './data.js';
 import './generation-form.js';
 import './util.js';
 // import {generateForm} from './generation-form.js';
-import {disableForm} from './disable-form.js';
-disableForm();
+// import {disableForm} from './disable-form.js';
 // eslint-disable-next-line no-console
+import './form-validity.js';
 sameOfferList;
