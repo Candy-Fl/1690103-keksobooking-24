@@ -49,8 +49,54 @@ const onRoomsChange = () => {
   if (!(roomsToCapacities[roomNumber].includes(capacityNumber))) {
     formCapacity.setCustomValidity('Количество гостей больше чем комнат');
   }
+  else {
+    (formCapacity.setCustomValidity(''));
+  }
 };
 formCapacity.addEventListener('input',() => {
   onRoomsChange();
   formCapacity.reportValidity();
+});
+
+// Устанавливаем валидность для поля "Тип жилья" и "Цена за ночь"
+const formHouseType = document.querySelector('#type');
+const formHousePrice = document.querySelector('#price');
+const typeToPrice = {
+  bungalow : [0],
+  flat : [1000],
+  hotel : [3000],
+  house : [5000],
+  palace : [10000],
+};
+
+const onTypeChange = () => {
+  if (formHousePrice.value<typeToPrice[formHouseType.value]) {
+    formHousePrice.setCustomValidity(`Цена должна быть не меньше ${typeToPrice[formHouseType.value]}`);
+  }
+  else {
+    formHousePrice.setCustomValidity('');
+  }
+};
+
+formHousePrice.addEventListener('input', () => {
+  onTypeChange();
+  formHousePrice.reportValidity();
+});
+
+formHouseType.addEventListener('input', () => {
+  onTypeChange();
+  formHouseType.reportValidity();
+});
+
+// Устанваливаем валидность для времени заезда и выезда
+
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
+
+timeIn.addEventListener('input', () => {
+  timeOut.value = timeIn.value;
+});
+
+timeOut.addEventListener('input', () => {
+  timeIn.value = timeOut.value;
 });
