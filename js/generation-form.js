@@ -37,7 +37,7 @@ const  generateForm = (Item)=> {
     featuresListItem.classList.add(`popup__feature--${feature}`);
     featuresList.appendChild(featuresListItem);
   });
-  // Меняем описание объекта
+  // Меняем описание объекта1
   offerElement.querySelector('.popup__description').textContent = Item.offer.description;
   // Меняем фото объекта
   const photoListContainer = offerElement.querySelector('.popup__photos');
