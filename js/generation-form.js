@@ -1,4 +1,3 @@
-
 const type = {
   palace : 'Дворец',
   flat : 'Квартира',
@@ -7,7 +6,6 @@ const type = {
   hotel : 'Отель',
 };
 // Объект данных
-const offerList = document.querySelector('#map-canvas');
 const  generateForm = (Item)=> {
   // Находим копию шаблона и привязываем её к переменной cardExample
   const cardExample = document.querySelector('#card').content.querySelector('.popup');
@@ -45,14 +43,14 @@ const  generateForm = (Item)=> {
   const photoListContainer = offerElement.querySelector('.popup__photos');
   photoListContainer.removeChild(offerElement.querySelector('.popup__photo'));
   const photoList = Item.offer.photos;
-  if (photoList.length > 0) {
+  if (photoList.length > 1) {
     photoList.forEach((photo) => {
       const photoItem = document.createElement('img');
       photoItem.classList.add('popup__photo');
       photoItem.src = photo;
       photoItem.width = '45';
       photoItem.height = '40';
-      photoItem.alt = 'Фотография жилья1';
+      photoItem.alt = 'Фотография жилья';
       photoListContainer.appendChild(photoItem);
     });
   }
@@ -63,7 +61,8 @@ const  generateForm = (Item)=> {
   }
   // Меняем аватарку
   offerElement.querySelector('.popup__avatar').src = Item.author.avatar;
-  offerList.appendChild(offerElement);
+  // offerList.appendChild(offerElement);
+  return (offerElement);
 };
 
 export{generateForm};
