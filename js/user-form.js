@@ -1,3 +1,5 @@
+import {sendData} from './api.js';
+import { showAlert } from './util.js';
 const adForm = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
 const disableForm = () => {
@@ -37,4 +39,15 @@ const activeForm = () => {
 
 export{activeForm};
 
+const sendUserFormSubmit = (onSuccess) => {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
 
+    sendData(
+      () => onSuccess(),
+      () => showAlert('Ошибка при отправке формы. Повторите попытку'),
+      new FormData(evt.target),
+    );
+  });
+};
+export{sendUserFormSubmit};

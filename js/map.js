@@ -1,7 +1,7 @@
-import { activeForm } from './toggle-form.js';
-import {disableForm} from './toggle-form.js';
-import {sameOfferList} from './create-offer-list.js';
+import {activeForm} from './user-form.js';
+import {disableForm} from './user-form.js';
 import {generateForm} from './generation-form.js';
+// const sameOfferList = getData();
 disableForm();
 // Создаём слой карты и интегрируем его на сайт в поле карты
 const map = L.map('map-canvas')
@@ -21,6 +21,7 @@ const mainMarkerIcon = L.icon({
   iconSize: [52,52],
   iconAnchor: [26,52],
 });
+
 const marker = L.marker(
   {
     lat :35.68,
@@ -42,6 +43,14 @@ marker.on('moveend', (evt) => {
   addressForm.value = `${markerAdress.lat.toFixed(5)} ${markerAdress.lng.toFixed(5)}`;
 });
 
+const returnMainMarker = () => {
+  marker.setLatLng({
+    lat: 35.68,
+    lng: 139.77,
+  });
+  addressForm.value = `${marker._latlng.lat} ${marker._latlng.lng}`;
+};
+
 // Создаём обычные маркеры для всех объявлений
 const commonMarkerIcon = L.icon({
   iconUrl: '../img/pin.svg',
@@ -49,19 +58,22 @@ const commonMarkerIcon = L.icon({
   iconAnchor:[20,40],
 });
 // Перебираем список предложений и на основе каждого элемента выводим маркер
+const makeCommonMarkers = (offers) => {
+  offers.forEach((offer) => {
+    const commonMarker = L.marker(
+      {
+        lat : offer.location.lat,
+        lng : offer.location.lng,
+      },
+      {
+        icon: commonMarkerIcon,
+      },
+    );
+    commonMarker.addTo(map);
+    commonMarker.bindPopup(generateForm(offer));
+  });
+};
 
-sameOfferList.forEach((offer) => {
-  const commonMarker = L.marker(
-    {
-      lat : offer.location.lat,
-      lng : offer.location.lng,
-    },
-    {
-      icon: commonMarkerIcon,
-    },
-  );
-  commonMarker.addTo(map);
-  generateForm(offer);
-  commonMarker.bindPopup(generateForm(offer));
-});
 
+export{makeCommonMarkers};
+export{returnMainMarker};

@@ -31,19 +31,26 @@ const  generateForm = (Item)=> {
     featuresList.removeChild(featuresList.firstChild);
   }
   // Заводим новые приеущества
-  Item.offer.features.forEach((feature) => {
-    const featuresListItem = document.createElement('li');
-    featuresListItem.classList.add('popup__feature');
-    featuresListItem.classList.add(`popup__feature--${feature}`);
-    featuresList.appendChild(featuresListItem);
-  });
-  // Меняем описание объекта1
+  if (Item.offer.features) {
+    Item.offer.features.forEach((feature) => {
+      const featuresListItem = document.createElement('li');
+      featuresListItem.classList.add('popup__feature');
+      featuresListItem.classList.add(`popup__feature--${feature}`);
+      featuresList.appendChild(featuresListItem);
+    });
+  }
+  else {
+    const errorItem = document.createElement('p');
+    errorItem.textContent = 'Приемущества отсутствуют';
+    featuresList.appendChild(errorItem);
+  }
+  // Меняем описание объекта
   offerElement.querySelector('.popup__description').textContent = Item.offer.description;
   // Меняем фото объекта
   const photoListContainer = offerElement.querySelector('.popup__photos');
   photoListContainer.removeChild(offerElement.querySelector('.popup__photo'));
   const photoList = Item.offer.photos;
-  if (photoList.length > 1) {
+  if (photoList) {
     photoList.forEach((photo) => {
       const photoItem = document.createElement('img');
       photoItem.classList.add('popup__photo');
@@ -61,8 +68,8 @@ const  generateForm = (Item)=> {
   }
   // Меняем аватарку
   offerElement.querySelector('.popup__avatar').src = Item.author.avatar;
-  // offerList.appendChild(offerElement);
   return (offerElement);
 };
+
 
 export{generateForm};
