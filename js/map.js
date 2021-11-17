@@ -1,14 +1,15 @@
 import {activeForm} from './user-form.js';
 import {disableForm} from './user-form.js';
 import {generateForm} from './generation-form.js';
-// const sameOfferList = getData();
+const MAIN_LNG_START = 139.77;
+const MAIN_LAT_START = 35.68;
 disableForm();
 // Создаём слой карты и интегрируем его на сайт в поле карты
 const map = L.map('map-canvas')
   .on('load', () => {
     activeForm();
   })
-  .setView([35.68, 139.77], 13);
+  .setView([MAIN_LAT_START, MAIN_LNG_START], 13);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' , {
   attribution : 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -24,8 +25,8 @@ const mainMarkerIcon = L.icon({
 
 const marker = L.marker(
   {
-    lat :35.68,
-    lng :139.77,
+    lat :MAIN_LAT_START,
+    lng :MAIN_LNG_START,
   },
   {
     draggable : true,
@@ -45,8 +46,8 @@ marker.on('moveend', (evt) => {
 
 const returnMainMarker = () => {
   marker.setLatLng({
-    lat: 35.68,
-    lng: 139.77,
+    lat: MAIN_LAT_START,
+    lng: MAIN_LNG_START,
   });
   addressForm.value = `${marker._latlng.lat} ${marker._latlng.lng}`;
 };
