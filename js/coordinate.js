@@ -1,5 +1,5 @@
 import { getRandomPositiveFloat } from './util.js';
-// Получение рандомных координат
+// Получение рандомных координат1
 
 const getRandomLat = () => (getRandomPositiveFloat(35.65000,35.70000,3));
 
