@@ -1,4 +1,3 @@
-import { returnMainMarker } from './map.js';
 // Устанавливаем валидность для заголовка
 const formTitle = document.querySelector('#title');
 formTitle.addEventListener('input',() => {
@@ -102,20 +101,3 @@ timeOut.addEventListener('input', () => {
   timeIn.value = timeOut.value;
 });
 
-const clearForm = () => {
-  formTitle.value = '';
-  formPrice.textContent = '';
-  formRoomNumber.value = 1;
-  formCapacity.value = 3;
-  formHouseType.value = 'flat';
-  formHousePrice.value = '';
-  timeIn.value = '12:00';
-  timeOut.value = timeIn.value;
-  document.querySelector('#description').value = '';
-  const featuresList = document.querySelectorAll('.features__checkbox');
-  featuresList.forEach((feature) => {
-    feature.checked = false;
-  });
-  returnMainMarker();
-};
-export {clearForm};

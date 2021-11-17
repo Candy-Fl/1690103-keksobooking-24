@@ -1,5 +1,6 @@
 import {sendData} from './api.js';
 import { showAlert } from './util.js';
+import { returnMainMarker } from './map.js';
 const adForm = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
 const disableForm = () => {
@@ -19,8 +20,6 @@ const disableForm = () => {
   mapFilters.querySelector('.map__features').classList.add('disabled');
 };
 
-export{disableForm};
-
 // Переводим форму в активное состояние
 
 const activeForm = () => {
@@ -37,7 +36,6 @@ const activeForm = () => {
   mapFilters.querySelector('.map__features').classList.remove('disabled');
 };
 
-export{activeForm};
 
 const sendUserFormSubmit = (onSuccess) => {
   adForm.addEventListener('submit', (evt) => {
@@ -50,4 +48,11 @@ const sendUserFormSubmit = (onSuccess) => {
     );
   });
 };
+const clearForm = () => {
+  adForm.reset();
+  returnMainMarker();
+};
+export {clearForm};
+export{activeForm};
+export{disableForm};
 export{sendUserFormSubmit};

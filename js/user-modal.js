@@ -1,4 +1,4 @@
-import { clearForm } from './form-validity.js';
+import { clearForm } from './user-form.js';
 const bodyElement = document.querySelector('body');
 const onSuccessSubmit = () => {
   const successModal = document.querySelector('#success').content.querySelector('.success');

@@ -11,11 +11,10 @@ const getData = (onSuccess) => {
       showAlert(`Ошибка загрузки данных: ${err}`);
     });
 };
-export{getData};
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(
-    'https://24.javascript.pages.academy/keksobook1ing',
+    'https://24.javascript.pages.academy/keksobooking',
     {
       method: 'POST',
       body,
@@ -29,9 +28,10 @@ const sendData = (onSuccess, onFail, body) => {
         onFailSubmit();
       }
     })
-    .catch(() => {
-      onFailSubmit();
+    .catch((err) => {
+      onFail(err);
     });
 };
 
+export{getData};
 export{sendData};
