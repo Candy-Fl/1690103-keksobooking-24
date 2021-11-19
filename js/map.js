@@ -1,8 +1,9 @@
 import {activeForm} from './user-form.js';
 import {disableForm} from './user-form.js';
 import {generateForm} from './generation-form.js';
-const MAIN_LNG_START = 139.77;
-const MAIN_LAT_START = 35.68;
+const MAIN_LNG_START = 139.75299;
+const MAIN_LAT_START = 35.684405;
+const SAME_OFER_LENGTH = 10;
 disableForm();
 // Создаём слой карты и интегрируем его на сайт в поле карты
 const map = L.map('map-canvas')
@@ -58,21 +59,27 @@ const commonMarkerIcon = L.icon({
   iconSize:[40,40],
   iconAnchor:[20,40],
 });
+
+const markerGroup = L.layerGroup().addTo(map);
+
 // Перебираем список предложений и на основе каждого элемента выводим маркер
 const makeCommonMarkers = (offers) => {
-  offers.forEach((offer) => {
-    const commonMarker = L.marker(
-      {
-        lat : offer.location.lat,
-        lng : offer.location.lng,
-      },
-      {
-        icon: commonMarkerIcon,
-      },
-    );
-    commonMarker.addTo(map);
-    commonMarker.bindPopup(generateForm(offer));
-  });
+  markerGroup.clearLayers();
+  offers
+    .slice(0,SAME_OFER_LENGTH)
+    .forEach((offer) => {
+      const commonMarker = L.marker(
+        {
+          lat : offer.location.lat,
+          lng : offer.location.lng,
+        },
+        {
+          icon: commonMarkerIcon,
+        },
+      );
+      commonMarker.addTo(markerGroup);
+      commonMarker.bindPopup(generateForm(offer));
+    });
 };
 
 

@@ -6,7 +6,6 @@ function getSelfRandom(first, second){
   return Math.floor(result);
 }
 
-export {getSelfRandom};
 
 // Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно.
 
@@ -17,13 +16,10 @@ function getRandomPositiveFloat (first, second, digits ) {
   return parseFloat(result.toFixed(digits),10);
 }
 
-export {getRandomPositiveFloat};
 
 // Получаем случайный элемент массива
 
 const getRandomArrayElement = (elements) => elements[getSelfRandom(0,elements.length-1)];
-
-export {getRandomArrayElement};
 
 
 // Получаем несколько случайных элементов массива, которые не будут повторяться
@@ -39,8 +35,6 @@ const getRandomCount = (elements) => {
   }
   return newElements;
 };
-
-export {getRandomCount};
 
 // Функция для показа ошибки загрузки данных
 const ALERT_SHOW_TIME = 5000;
@@ -63,3 +57,7 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 export{showAlert};
+export {getSelfRandom};
+export {getRandomCount};
+export {getRandomArrayElement};
+export {getRandomPositiveFloat};
