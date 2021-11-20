@@ -5,9 +5,10 @@ import './api.js';
 import {getData} from './api.js';
 import {clearForm} from './user-form.js';
 import {sendUserFormSubmit} from './user-form.js';
+import { onFilterChange } from './user-form.js';
 import './user-modal.js';
-const SAME_OFER_LENGTH = 10;
 getData((offers) => {
-  makeCommonMarkers(offers.slice(0,SAME_OFER_LENGTH));
+  makeCommonMarkers(offers);
+  onFilterChange(offers);
 });
 sendUserFormSubmit(clearForm);
