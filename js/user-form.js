@@ -3,6 +3,19 @@ import { showAlert } from './util.js';
 import { returnMainMarker } from './map.js';
 import { makeCommonMarkers } from './map.js';
 import { debounce } from './utils/debounce.js';
+const typesOfOfferPrice = {
+  low : {
+    min : 0,
+    max :9999,
+  },
+  middle : {
+    min : 10000,
+    max : 49999,
+  },
+  high : {
+    min : 50000,
+  },
+};
 const adForm = document.querySelector('.ad-form');
 const mapFilters = document.querySelector('.map__filters');
 const mapFiltersContainer = mapFilters.querySelectorAll('.map__filter');
@@ -11,30 +24,33 @@ const disableForm = () => {
   adForm.classList.add('ad-form--disabled');
   const adFormElements=  adForm.querySelectorAll('.ad-form__element');
   (adFormElements).forEach((element) => {
-    element.classList.add('.disabled');
+    element.disabled = true;
   });
   // Так же фильтры
-  mapFilters.classList.add('map__filters--disabled');
+  mapFilters.classList.add('disabled');
   (mapFiltersContainer).forEach((element) => {
-    element.classList.add('.disabled');
+    element.disabled = true;
   });
   // Отключаем интерактивные элементы приемуществ
-  mapFilters.querySelector('.map__features').classList.add('disabled');
+  mapFilters.querySelector('.map__features').disabled = true;
 };
 
 // Переводим форму в активное состояние
 
-const activeForm = () => {
+const activateForm = () => {
   adForm.classList.remove('ad-form--disabled');
   const adFormElements=  adForm.querySelectorAll('.ad-form__element');
   (adFormElements).forEach((element) => {
-    element.classList.remove('.disabled');
+    element.disabled = false;
   });
-  mapFilters.classList.remove('map__filters--disabled');
+};
+
+const activateFilters = () => {
+  mapFilters.classList.remove('disabled');
+  mapFilters.querySelector('.map__features').disabled = false;
   (mapFiltersContainer).forEach((element) => {
-    element.classList.remove('.disabled');
+    element.disabled = false;
   });
-  mapFilters.querySelector('.map__features').classList.remove('disabled');
 };
 
 
@@ -51,6 +67,7 @@ const sendUserFormSubmit = (onSuccess) => {
 };
 const clearForm = () => {
   adForm.reset();
+  mapFilters.reset();
   returnMainMarker();
 };
 
@@ -62,20 +79,6 @@ const getTypeOfHouse = (offer) => {
   if ((offer.offer.type === houseType.value) || (houseType.value === anyType)) {
     return(true);
   }
-};
-
-const typesOfOfferPrice = {
-  low : {
-    min : 0,
-    max :9999,
-  },
-  middle : {
-    min : 10000,
-    max : 49999,
-  },
-  high : {
-    min : 50000,
-  },
 };
 
 const housePrice = document.querySelector('#housing-price');
@@ -140,9 +143,9 @@ const onFilterChange = (offers) => {
 };
 
 export {clearForm};
-export{activeForm};
+export{activateForm};
 export{disableForm};
 export{sendUserFormSubmit};
 export{onFilterChange};
-
+export{activateFilters};
 

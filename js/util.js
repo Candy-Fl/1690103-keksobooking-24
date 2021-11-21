@@ -1,20 +1,20 @@
 // Функция, которая выводит случайное число в диапозоне от min до max
-function getSelfRandom(first, second){
+const getSelfRandom = (first, second) => {
   const lower = Math.ceil(Math.min(Math.abs(first), Math.abs(second)));
   const upper = Math.floor(Math.max(Math.abs(first), Math.abs(second)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
-}
+};
 
 
 // Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно.
 
-function getRandomPositiveFloat (first, second, digits ) {
+const getRandomPositiveFloat = (first, second, digits ) => {
   const lower = Math.min(Math.abs(first), Math.abs(second));
   const upper = Math.max(Math.abs(first), Math.abs(second));
   const result = Math.random() * (upper - lower) + lower;
   return parseFloat(result.toFixed(digits),10);
-}
+};
 
 
 // Получаем случайный элемент массива
