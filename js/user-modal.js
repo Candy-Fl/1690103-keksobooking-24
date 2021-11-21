@@ -37,6 +37,7 @@ const onFailSubmit = () => {
 export{onFailSubmit};
 
 const resetButton = document.querySelector('.ad-form__reset');
-resetButton.addEventListener('click',() => {
+resetButton.addEventListener('click',(evt) => {
+  evt.preventDefault();
   clearForm();
 });

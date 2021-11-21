@@ -1,6 +1,7 @@
-import {activeForm} from './user-form.js';
+import {activateForm} from './user-form.js';
 import {disableForm} from './user-form.js';
 import {generateForm} from './generation-form.js';
+import {activateFilters} from './user-form.js';
 const MAIN_LNG_START = 139.75299;
 const MAIN_LAT_START = 35.684405;
 const SAME_OFER_LENGTH = 10;
@@ -8,7 +9,7 @@ disableForm();
 // Создаём слой карты и интегрируем его на сайт в поле карты
 const map = L.map('map-canvas')
   .on('load', () => {
-    activeForm();
+    activateForm();
   })
   .setView([MAIN_LAT_START, MAIN_LNG_START], 13);
 
@@ -38,7 +39,7 @@ marker.addTo(map);
 
 // Настраиваем функционал перемещения главной метки и отображения координат
 const addressForm = document.querySelector('#address');
-addressForm.value = `${marker._latlng.lat} ${marker._latlng.lng}`;
+addressForm.value = `${MAIN_LAT_START} ${MAIN_LNG_START}`;
 marker.on('moveend', (evt) => {
   const markerAdress = evt.target.getLatLng();
   // Присваиваем строке адресса значения lng и lng , округленные до 5 символов после запятой
@@ -50,7 +51,11 @@ const returnMainMarker = () => {
     lat: MAIN_LAT_START,
     lng: MAIN_LNG_START,
   });
-  addressForm.value = `${marker._latlng.lat} ${marker._latlng.lng}`;
+  map.setView({
+    lat: MAIN_LAT_START,
+    lng: MAIN_LNG_START,
+  });
+  addressForm.value = `${MAIN_LAT_START} ${MAIN_LNG_START}`;
 };
 
 // Создаём обычные маркеры для всех объявлений
@@ -80,6 +85,7 @@ const makeCommonMarkers = (offers) => {
       commonMarker.addTo(markerGroup);
       commonMarker.bindPopup(generateForm(offer));
     });
+  activateFilters();
 };
 
 

@@ -40,9 +40,9 @@ const  generateForm = (item)=> {
     });
   }
   else {
-    const erroritem = document.createElement('p');
-    erroritem.textContent = 'Приемущества отсутствуют';
-    featuresList.appendChild(erroritem);
+    const errorItem = document.createElement('p');
+    errorItem.textContent = 'Приемущества отсутствуют';
+    featuresList.appendChild(errorItem);
   }
   // Меняем описание объекта
   offerElement.querySelector('.popup__description').textContent = item.offer.description;
@@ -52,19 +52,19 @@ const  generateForm = (item)=> {
   const photoList = item.offer.photos;
   if (photoList) {
     photoList.forEach((photo) => {
-      const photoitem = document.createElement('img');
-      photoitem.classList.add('popup__photo');
-      photoitem.src = photo;
-      photoitem.width = '45';
-      photoitem.height = '40';
-      photoitem.alt = 'Фотография жилья';
-      photoListContainer.appendChild(photoitem);
+      const photoItem = document.createElement('img');
+      photoItem.classList.add('popup__photo');
+      photoItem.src = photo;
+      photoItem.width = '45';
+      photoItem.height = '40';
+      photoItem.alt = 'Фотография жилья';
+      photoListContainer.appendChild(photoItem);
     });
   }
   else {
-    const erroritem = document.createElement('p');
-    erroritem.textContent = 'Фотографии отсутствуют';
-    photoListContainer.appendChild(erroritem);
+    const errorItem = document.createElement('p');
+    errorItem.textContent = 'Фотографии отсутствуют';
+    photoListContainer.appendChild(errorItem);
   }
   // Меняем аватарку
   offerElement.querySelector('.popup__avatar').src = item.author.avatar;
