@@ -17,5 +17,7 @@ getData((offers) => {
 },
 );
 
-sendUserFormSubmit(clearForm(localOffers));
+sendUserFormSubmit(() => {
+  clearForm(localOffers);
+});
 export{localOffers};
