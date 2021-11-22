@@ -1,4 +1,5 @@
 import { clearForm } from './user-form.js';
+import {localOffers} from './main.js';
 const bodyElement = document.querySelector('body');
 const onSuccessSubmit = () => {
   const successModal = document.querySelector('#success').content.querySelector('.success');
@@ -39,5 +40,5 @@ export{onFailSubmit};
 const resetButton = document.querySelector('.ad-form__reset');
 resetButton.addEventListener('click',(evt) => {
   evt.preventDefault();
-  clearForm();
+  clearForm(localOffers);
 });

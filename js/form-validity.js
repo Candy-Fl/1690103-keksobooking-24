@@ -64,6 +64,11 @@ formCapacity.addEventListener('input',() => {
   formCapacity.reportValidity();
 });
 
+formRoomNumber.addEventListener('input', () => {
+  onRoomsChange();
+  formCapacity.reportValidity();
+});
+
 // Устанавливаем валидность для поля "Тип жилья" и "Цена за ночь"
 const formHouseType = document.querySelector('#type');
 const formHousePrice = document.querySelector('#price');
@@ -83,9 +88,14 @@ formHousePrice.addEventListener('input', () => {
   formHousePrice.reportValidity();
 });
 
+const setPlaceHolder = () => {
+  formHousePrice.placeholder = typePrice[formHouseType.value];
+  formHouseType.reportValidity();
+};
+
 formHouseType.addEventListener('input', () => {
   changeType();
-  formHousePrice.placeholder = typePrice[formHouseType.value];
+  setPlaceHolder();
   formHouseType.reportValidity();
 });
 
@@ -102,3 +112,5 @@ timeOut.addEventListener('input', () => {
   timeIn.value = timeOut.value;
 });
 
+
+export{setPlaceHolder};

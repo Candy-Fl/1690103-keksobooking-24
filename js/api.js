@@ -1,6 +1,7 @@
 import { showAlert } from './util.js';
 import { onSuccessSubmit } from './user-modal.js';
 import { onFailSubmit } from './user-modal.js';
+
 const getData = (onSuccess) => {
   fetch('https://24.javascript.pages.academy/keksobooking/data')
     .then((response) => response.json())
@@ -11,6 +12,7 @@ const getData = (onSuccess) => {
       showAlert(`Ошибка загрузки данных: ${err}`);
     });
 };
+
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(

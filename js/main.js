@@ -7,8 +7,15 @@ import {clearForm} from './user-form.js';
 import {sendUserFormSubmit} from './user-form.js';
 import { onFilterChange } from './user-form.js';
 import './user-modal.js';
+
+const localOffers = [];
+
 getData((offers) => {
   makeCommonMarkers(offers);
   onFilterChange(offers);
-});
-sendUserFormSubmit(clearForm);
+  localOffers.push(...offers);
+},
+);
+
+sendUserFormSubmit(clearForm(localOffers));
+export{localOffers};

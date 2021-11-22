@@ -3,6 +3,7 @@ import { showAlert } from './util.js';
 import { returnMainMarker } from './map.js';
 import { makeCommonMarkers } from './map.js';
 import { debounce } from './utils/debounce.js';
+import {setPlaceHolder} from './form-validity.js';
 const typesOfOfferPrice = {
   low : {
     min : 0,
@@ -64,11 +65,6 @@ const sendUserFormSubmit = (onSuccess) => {
       new FormData(evt.target),
     );
   });
-};
-const clearForm = () => {
-  adForm.reset();
-  mapFilters.reset();
-  returnMainMarker();
 };
 
 // Фильтрация объектов
@@ -140,6 +136,15 @@ const onFilterChange = (offers) => {
     const filteredOffers = newOffers.filter((offer) => getTypeOfHouse(offer) && getPriceOfHouse(offer) && getRoomsNumber(offer) && getGuestsNumber(offer) && getOfferFeatures(offer));
     makeCommonMarkers(filteredOffers);
   }));
+};
+
+
+const clearForm = (offers) => {
+  adForm.reset();
+  setPlaceHolder();
+  mapFilters.reset();
+  returnMainMarker();
+  makeCommonMarkers(offers);
 };
 
 export {clearForm};

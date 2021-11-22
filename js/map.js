@@ -39,11 +39,11 @@ marker.addTo(map);
 
 // Настраиваем функционал перемещения главной метки и отображения координат
 const addressForm = document.querySelector('#address');
-addressForm.value = `${MAIN_LAT_START} ${MAIN_LNG_START}`;
+addressForm.value = `${MAIN_LAT_START},${MAIN_LNG_START}`;
 marker.on('moveend', (evt) => {
   const markerAdress = evt.target.getLatLng();
   // Присваиваем строке адресса значения lng и lng , округленные до 5 символов после запятой
-  addressForm.value = `${markerAdress.lat.toFixed(5)} ${markerAdress.lng.toFixed(5)}`;
+  addressForm.value = `${markerAdress.lat.toFixed(5)},${markerAdress.lng.toFixed(5)}`;
 });
 
 const returnMainMarker = () => {
@@ -55,7 +55,7 @@ const returnMainMarker = () => {
     lat: MAIN_LAT_START,
     lng: MAIN_LNG_START,
   });
-  addressForm.value = `${MAIN_LAT_START} ${MAIN_LNG_START}`;
+  addressForm.value = `${MAIN_LAT_START},${MAIN_LNG_START}`;
 };
 
 // Создаём обычные маркеры для всех объявлений
