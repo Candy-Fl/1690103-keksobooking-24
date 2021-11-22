@@ -10,11 +10,11 @@ const roomsCapacities = {
   100: [0],
 };
 const typePrice = {
-  bungalow : [0],
-  flat : [1000],
-  hotel : [3000],
-  house : [5000],
-  palace : [10000],
+  bungalow : 0,
+  flat : 1000,
+  hotel : 3000,
+  house : 5000,
+  palace : 10000,
 };
 formTitle.addEventListener('input',() => {
   const valueLength = formTitle.value.length;
@@ -75,7 +75,7 @@ const formHousePrice = document.querySelector('#price');
 
 
 const changeType = () => {
-  if (formHousePrice.value<typePrice[formHouseType.value]) {
+  if (parseInt((formHousePrice.value),10) < (typePrice[formHouseType.value])) {
     formHousePrice.setCustomValidity(`Цена должна быть не меньше ${typePrice[formHouseType.value]}`);
   }
   else {
